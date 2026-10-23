@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="面向中韩留学生的翻译互助、景点推荐与经验分享社区">
+<title>中韩留学生互助站</title>
+<style>
+:root{--ink:#20312d;--muted:#6e7d77;--green:#236b58;--mint:#eaf5ef;--cream:#fbfaf6;--line:#e5eae5;--coral:#f1a18a}
+*{box-sizing:border-box}body{margin:0;background:var(--cream);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+header{background:linear-gradient(125deg,#e9f5ed,#f9f0e6);padding:26px 18px 22px;border-bottom:1px solid var(--line)}
+.wrap{max-width:980px;margin:auto}.top{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border-radius:16px;background:var(--green);color:white;display:grid;place-items:center;font-size:25px}
+h1{font-size:clamp(23px,4vw,32px);margin:0 0 5px;letter-spacing:-.6px}.subtitle{margin:0;color:#52655d;font-size:14px;line-height:1.6}
+.pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:17px}.pill{border:1px solid #d3e3d7;border-radius:99px;padding:6px 11px;font-size:12px;background:#ffffffa6}
+main{max-width:980px;margin:24px auto;padding:0 16px 48px;display:grid;grid-template-columns:1fr 290px;gap:22px}
+.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}.tab,.btn{border:1px solid var(--line);background:white;border-radius:12px;padding:10px 13px;cursor:pointer;color:var(--ink);font:inherit}.tab.active{background:var(--green);color:white;border-color:var(--green)}.btn.primary{background:var(--green);color:white;border-color:var(--green)}.btn:hover,.tab:hover{filter:brightness(.97)}
+.panel,.post,.sidebox{background:white;border:1px solid var(--line);border-radius:18px;padding:17px;box-shadow:0 5px 18px #20312d06}.compose{margin-bottom:16px}.compose h2,.sidebox h3{font-size:16px;margin:0 0 12px}.field{width:100%;border:1px solid #dce4de;border-radius:11px;padding:11px 12px;font:inherit;margin-bottom:10px;background:#fff}.field:focus{outline:2px solid #bddbcc;border-color:var(--green)}textarea.field{min-height:88px;resize:vertical}
+.formrow{display:flex;gap:8px}.formrow>*{flex:1;min-width:0}.hint{font-size:12px;color:var(--muted);line-height:1.6}.post{margin-bottom:13px}.posthead{display:flex;justify-content:space-between;gap:10px;align-items:start}.tag{font-size:12px;color:var(--green);background:var(--mint);border-radius:8px;padding:5px 8px;white-space:nowrap}.post h3{margin:11px 0 7px;font-size:18px;line-height:1.45}.postbody{white-space:pre-wrap;line-height:1.7;color:#485750;font-size:14px}.meta{font-size:12px;color:var(--muted);margin-top:12px;display:flex;gap:12px;flex-wrap:wrap}.comments{border-top:1px solid var(--line);margin-top:13px;padding-top:12px}.comments summary{cursor:pointer;font-size:13px;color:var(--green);font-weight:600}.comment{font-size:13px;line-height:1.6;margin:9px 0;padding:9px 11px;background:#f7faf7;border-radius:10px;white-space:pre-wrap}.commentform{display:flex;gap:7px;margin-top:10px}.commentform input{flex:1;min-width:0;margin:0}.commentform button{padding:8px 10px}.sidebox{margin-bottom:14px}.sidebox p,.sidebox li{font-size:13px;line-height:1.7;color:#52655d}.sidebox ul{padding-left:18px;margin:7px 0}.stat{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #edf0ed;font-size:13px}.stat:last-child{border:0}.empty{text-align:center;padding:36px 16px;color:var(--muted)}.empty strong{display:block;color:var(--ink);margin-bottom:6px}.notice{font-size:12px;color:#687970;line-height:1.6;margin-top:12px}.error{color:#a33b28;font-size:13px;margin:8px 0}.hidden{display:none!important}
+footer{text-align:center;color:#7a8981;font-size:12px;padding:20px;border-top:1px solid var(--line)}
+@media(max-width:760px){main{grid-template-columns:1fr;margin-top:17px}.sidebar{order:2}.top{align-items:flex-start}.panel,.post,.sidebox{padding:14px}.formrow{display:block}.formrow .field{width:100%}}
+</style></head>
+<body>
+<header><div class="wrap">
+ <div class="top"><div class="logo">桥</div><div><h1>中韩留学生互助站</h1><p class="subtitle">连接中国与韩国留学生，让求助更容易，让经验被看见。</p></div></div>
+ <div class="pills"><span class="pill">🇨🇳 中文交流</span><span class="pill">🇰🇷 한국어</span><span class="pill">翻译互助</span><span class="pill">旅行与生活经验</span></div>
+</div></header>
+<main><section>
+ <div class="toolbar" id="tabs">
+  <button class="tab active" data-category="全部">全部帖子</button><button class="tab" data-category="翻译求助">翻译求助</button><button class="tab" data-category="景点推荐">景点推荐</button><button class="tab" data-category="生活互助">生活互助</button>
+ </div>
+ <section class="panel compose"><h2>✍️ 发布一条互助信息</h2>
+  <form id="postForm">
+   <div class="formrow"><select class="field" id="category" aria-label="帖子分类"><option>翻译求助</option><option>景点推荐</option><option>生活互助</option></select><input class="field" id="author" maxlength="30" placeholder="昵称（选填）" aria-label="昵称"></div>
+   <input class="field" id="title" maxlength="100" required placeholder="用一句话概括你的问题或分享" aria-label="帖子标题">
+   <textarea class="field" id="content" maxlength="5000" required placeholder="写下详细内容……可以使用中文或韩文。" aria-label="帖子内容"></textarea>
+   <button class="btn primary" type="submit">发布帖子</button><p class="hint">无需注册。请勿填写手机号、住址、证件号等敏感个人信息。</p><p id="postError" class="error hidden"></p>
+  </form>
+ </section>
+ <div id="feed" aria-live="polite"><div class="empty">正在加载帖子…</div></div>
+</section>
+<aside class="sidebar">
+ <div class="sidebox"><h3>🌿 关于互助站</h3><p>为中韩留学生提供翻译求助、景点推荐和生活经验交流。欢迎友善分享，互相帮助。</p></div>
+ <div class="sidebox"><h3>社区小约定</h3><ul><li>尊重不同语言与文化</li><li>分享信息时尽量核实来源</li><li>不发布广告、骚扰或违法内容</li><li>保护自己与他人的隐私</li></ul></div>
+ <div class="sidebox"><h3>社区动态</h3><div class="stat"><span>当前分类</span><strong id="currentCat">全部</strong></div><div class="stat"><span>帖子数量</span><strong id="postCount">—</strong></div><p class="notice">帖子由网站数据库保存，其他访客也能看到。请勿发布敏感信息。</p></div>
+</aside></main>
+<footer>中韩留学生互助站 · 让每一次求助都有回应</footer>
+<script>
+const $=s=>document.querySelector(s);let activeCategory='全部';let posts=[];
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const date=s=>{try{return new Date(s).toLocaleString('zh-CN',{month:'short',day:'numeric',hour:'2-digit',minute:'2-digit'})}catch{return ''}};
+async function request(url,options){const r=await fetch(url,options);const data=await r.json().catch(()=>({error:'服务器返回了无法识别的数据'}));if(!r.ok)throw new Error(data.error||'请求失败');return data}
+async function loadPosts(){try{posts=await request('/api/posts');render()}catch(e){$('#feed').innerHTML='<div class="panel empty"><strong>暂时无法连接帖子服务</strong>如果你还没有完成数据库配置，请先按项目说明部署后端。</div>';$('#postCount').textContent='—'}}
+function render(){const shown=posts.filter(p=>activeCategory==='全部'||p.category===activeCategory);$('#postCount').textContent=posts.length;$('#currentCat').textContent=activeCategory;
+ if(!shown.length){$('#feed').innerHTML='<div class="panel empty"><strong>这里还没有帖子</strong>成为第一个分享经验的人吧！</div>';return}
+ $('#feed').innerHTML=shown.map(p=>`<article class="post"><div class="posthead"><span class="tag">${esc(p.category)}</span><span class="hint">${esc(date(p.created_at))}</span></div><h3>${esc(p.title)}</h3><div class="postbody">${esc(p.content)}</div><div class="meta"><span>👤 ${esc(p.author||'热心同学')}</span><span>💬 ${Number(p.comment_count||0)} 条评论</span></div><details class="comments" data-post="${p.id}"><summary>查看评论 / 写下回复</summary><div class="commentlist"><div class="hint">加载评论中…</div></div><form class="commentform"><input class="field" name="author" maxlength="30" placeholder="昵称（选填）" aria-label="评论昵称"><input class="field" name="content" maxlength="1000" required placeholder="友善地回复…" aria-label="评论内容"><button class="btn primary" type="submit">发送</button></form><p class="error hidden"></p></details></article>`).join('');
+ document.querySelectorAll('details.comments').forEach(d=>d.addEventListener('toggle',()=>{if(d.open&&!d.dataset.loaded){d.dataset.loaded='1';loadComments(d)}}));
+ document.querySelectorAll('.commentform').forEach(f=>f.addEventListener('submit',submitComment));
+}
+async function loadComments(d){try{const cs=await request(`/api/posts/${d.dataset.post}/comments`);d.querySelector('.commentlist').innerHTML=cs.length?cs.map(c=>`<div class="comment"><strong>${esc(c.author||'热心同学')}</strong> · ${esc(date(c.created_at))}<br>${esc(c.content)}</div>`).join(''):'<p class="hint">还没有评论，来写第一条吧。</p>'}catch(e){d.querySelector('.commentlist').innerHTML='<p class="error">评论暂时无法加载。</p>'}}
+async function submitComment(e){e.preventDefault();const f=e.currentTarget,d=f.closest('details'),err=d.querySelector('.error'),btn=f.querySelector('button');err.classList.add('hidden');btn.disabled=true;try{await request(`/api/posts/${d.dataset.post}/comments`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({author:f.author.value.trim(),content:f.content.value.trim()})});f.content.value='';d.dataset.loaded='0';await loadComments(d);d.dataset.loaded='1';await loadPosts()}catch(e){err.textContent=e.message;err.classList.remove('hidden')}finally{btn.disabled=false}}
+$('#postForm').addEventListener('submit',async e=>{e.preventDefault();const err=$('#postError'),btn=e.submitter;err.classList.add('hidden');btn.disabled=true;try{await request('/api/posts',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({category:$('#category').value,author:$('#author').value.trim(),title:$('#title').value.trim(),content:$('#content').value.trim()})});$('#title').value='';$('#content').value='';activeCategory='全部';document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.category==='全部'));await loadPosts();window.scrollTo({top:document.querySelector('.compose').offsetTop-20,behavior:'smooth'})}catch(e){err.textContent=e.message;err.classList.remove('hidden')}finally{btn.disabled=false}});
+$('#tabs').addEventListener('click',e=>{const b=e.target.closest('button[data-category]');if(!b)return;activeCategory=b.dataset.category;document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('active',x===b));render()});
+loadPosts();
+</script></body></html>
